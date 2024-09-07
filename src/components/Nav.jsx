@@ -78,7 +78,7 @@ const Navbar = () => {
                 </button>
             </div>
 
-            <div id="mobile-menu" className={`md:hidden ${mobileMenuOpen ? '' : 'hidden'} bg-[#1A1A1A] mt-2`}>
+            <div id="mobile-menu" className={`md:hidden ${mobileMenuOpen ? '' : 'hidden'} bg-[#242424] mt-2`}>
                 <a
                     href="#about-section"
                     className="block py-2 px-4 text-sm hover:bg-gray-400 transition duration-300"
