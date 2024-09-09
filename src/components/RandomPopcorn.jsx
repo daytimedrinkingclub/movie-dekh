@@ -54,12 +54,38 @@ const RandomPopcornBackground = ({ width = 1900, height = 570, popcornCount = 50
   const [popcornPositions, setPopcornPositions] = useState([]);
 
   useEffect(() => {
-    const newPositions = Array.from({ length: popcornCount }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: 50,
-      rotation: Math.random() * 360,
-    }));
+    const newPositions = [];
+    const minDistance = 150;
+
+    const isOverlapping = (newPos) => {
+      return newPositions.some(pos => {
+        const dx = newPos.x - pos.x;
+        const dy = newPos.y - pos.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        return distance < minDistance;
+      });
+    };
+
+    for (let i = 0; i < popcornCount; i++) {
+      let newPos;
+      let attempts = 0;
+      const maxAttempts = 100;
+
+      do {
+        newPos = {
+          x: Math.random() * (width - 70),
+          y: Math.random() * (height - 70),
+          size: 70,
+          rotation: Math.random() * 360,
+        };
+        attempts++;
+      } while (isOverlapping(newPos) && attempts < maxAttempts);
+
+      if (attempts < maxAttempts) {
+        newPositions.push(newPos);
+      }
+    }
+
     setPopcornPositions(newPositions);
   }, [width, height, popcornCount]);
 
