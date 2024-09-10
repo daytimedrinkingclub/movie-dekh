@@ -50,8 +50,23 @@ const PopcornBucket = ({ x, y, size, rotation }) => (
 </g>
 );
 
-const RandomPopcornBackground = ({ width = 1900, height = 570, popcornCount = 50 }) => {
+const RandomPopcornBackground = ({ popcornCount = 50 }) => {
   const [popcornPositions, setPopcornPositions] = useState([]);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
 
   useEffect(() => {
     const newPositions = [];
@@ -73,9 +88,9 @@ const RandomPopcornBackground = ({ width = 1900, height = 570, popcornCount = 50
 
       do {
         newPos = {
-          x: Math.random() * (width - 70),
-          y: Math.random() * (height - 70),
-          size: 70,
+          x: Math.random() * dimensions.width,
+          y: Math.random() * dimensions.height,
+          size: 75,
           rotation: Math.random() * 360,
         };
         attempts++;
@@ -87,11 +102,11 @@ const RandomPopcornBackground = ({ width = 1900, height = 570, popcornCount = 50
     }
 
     setPopcornPositions(newPositions);
-  }, [width, height, popcornCount]);
+  }, [dimensions, popcornCount]);
 
   return (
-    <div className="w-full h-full" style={{ width, height }}>
-      <svg width={width} height={height}>
+    <div className="w-screen h-screen">
+      <svg width="100%" height="100%" viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
         {popcornPositions.map((pos, index) => (
           <PopcornBucket key={index} x={pos.x} y={pos.y} size={pos.size} rotation={pos.rotation}/>
         ))}

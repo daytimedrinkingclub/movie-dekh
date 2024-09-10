@@ -13,14 +13,11 @@ function SubmitForm() {
     };
 
     return (
-        <section className="bg-[#1A1A1A] h-screen">
-          <div className="absolute">
-            <RandomPopcornBackground />
-          </div>
+        <section className="container mx-auto">
           <div className="py-48 px-6 md:px-12 lg:px-20 ">
-            <div className="bg-[#1A1A1A] flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center">
             <h1 className="text-white z-10 text-center text-6xl font-bold">Find Your Next Movie</h1>
-            <p className="text-2xl z-10 text-center text-gray-300 my-8">Enter your movie preferences and get personalized suggestions.</p>
+            <p className="text-2xl z-10 text-center text-gray-300 my-10 md:my-14">Enter your movie preferences and get personalized suggestions.</p>
             <form onSubmit={handleSubmit} className="w-full z-10 max-w-md">
               <div className="flex md:flex-row flex-col justify-center">
                 <Input

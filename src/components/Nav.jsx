@@ -37,7 +37,7 @@ const Navbar = () => {
     return (
         <nav
             id='top'
-            className={`bg-[#1A1A1A] text-white p-4 fixed w-full top-0 z-50 transition-all ${scrollPosition > 50 ? 'bg-opacity-90 backdrop-blur-sm' : 'bg-opacity-100'
+            className={`bg-[#090909] text-white p-4 fixed w-full top-0 z-50 transition-all ${scrollPosition > 50 ? 'bg-opacity-90 backdrop-blur-sm' : 'bg-opacity-100'
                 }`}
         >
             <div className="container mx-auto flex justify-between items-center">
