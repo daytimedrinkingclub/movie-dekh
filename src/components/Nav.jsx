@@ -43,7 +43,7 @@ const Navbar = () => {
             <div className="container mx-auto flex justify-between items-center">
                 <a href="#" className="text-2xl font-bold">
                     <div className='flex justify-between'>
-                        <span>&nbsp;&nbsp;Movie Dekh</span>
+                        <span className='text-3xl'>&nbsp;&nbsp;Movie Dekh</span>
                     </div>
 
                 </a>

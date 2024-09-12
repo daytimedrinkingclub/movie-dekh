@@ -28,5 +28,28 @@ app.post('/api/evaluate', async (req, res) => {
   }
 });
 
+app.get('/api/trendingmovies', async (req, res) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/trending/all/day/?api_key=${process.env.TMDB_API_KEY}`);
+    const data = await response.json();
+    res.json({ movies: data.results });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'An error occurred while fetching trending movies.' });
+  }
+});
+
+app.get('/api/preferredmovies', async (req, res) => {
+  try {
+    const { genre } = req.query;
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=${genre}`);
+    const data = await response.json();
+    res.json({ movies: data.results });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'An error occurred while fetching movies.' });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

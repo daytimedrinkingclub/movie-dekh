@@ -1,6 +1,8 @@
 import Navbar from "./components/Nav";
 import SubmitForm from "./components/SubmitForm";
 import RandomPopcornBackground from "./components/RandomPopcorn";
+import Trending from "./components/Trending";
+import MovieCard from "./components/MovieCard";
 
 function App() {
 
@@ -11,6 +13,10 @@ function App() {
         <RandomPopcornBackground />
       </div>
       <SubmitForm />
+      <div className="overflow-hidden border border-white">
+        <Trending />
+      </div>
+      <MovieCard />
     </>
   )
 }
